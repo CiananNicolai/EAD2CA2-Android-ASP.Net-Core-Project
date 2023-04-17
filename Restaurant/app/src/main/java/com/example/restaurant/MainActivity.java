@@ -18,59 +18,64 @@ import com.example.restaurant.databinding.ActivityMainBinding;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import android.os.Bundle;
+import android.app.Activity;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.ArrayAdapter;
+import android.widget.ImageView;
+import android.widget.Spinner;
+import android.widget.TextView;
+
+
 public class MainActivity extends AppCompatActivity {
 
-    private AppBarConfiguration appBarConfiguration;
-    private ActivityMainBinding binding;
+    private ArrayList<Restaurant> restaurantList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
 
-        binding = ActivityMainBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
+        // add some restaurants to the list
+        restaurantList.add(new Restaurant("Restaurant A", "123 Main St", "555-1234"));
+        restaurantList.add(new Restaurant("Restaurant B", "456 Elm St", "555-5678"));
+        restaurantList.add(new Restaurant("Restaurant C", "789 Oak St", "555-9012"));
 
-        setSupportActionBar(binding.toolbar);
-
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
-        appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
-        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
-
-        binding.fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        // create the adapter and set it on the ListView
+        RestaurantAdapter adapter = new RestaurantAdapter(this, restaurantList);
+        ListView listView = findViewById(R.id.listView);
+        listView.setAdapter(adapter);
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
+    public class RestaurantAdapter extends ArrayAdapter<Restaurant> {
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        public RestaurantAdapter(Context context, ArrayList<Restaurant> restaurants) {
+            super(context, 0, restaurants);
         }
 
-        return super.onOptionsItemSelected(item);
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            Restaurant restaurant = getItem(position);
+
+            if (convertView == null) {
+                convertView = LayoutInflater.from(getContext()).inflate(R.layout.restaurant_item, parent, false);
+            }
+
+            TextView nameTextView = convertView.findViewById(R.id.nameTextView);
+            TextView addressTextView = convertView.findViewById(R.id.addressTextView);
+            TextView phoneTextView = convertView.findViewById(R.id.phoneTextView);
+
+            nameTextView.setText(restaurant.getName());
+            addressTextView.setText(restaurant.getAddress());
+            phoneTextView.setText(restaurant.getPhoneNumber());
+
+            return convertView;
+        }
     }
 
-    @Override
-    public boolean onSupportNavigateUp() {
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
-        return NavigationUI.navigateUp(navController, appBarConfiguration)
-                || super.onSupportNavigateUp();
-    }
 }
