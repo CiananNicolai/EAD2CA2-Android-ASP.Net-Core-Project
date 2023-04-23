@@ -488,11 +488,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Cianan\\Source\\repos\\RestaurantAPI\\RestaurantAPI\\RestaurantAPI.csproj",
+      "projectUniqueName": "C:\\Users\\Cianan\\Downloads\\EAD2CA2-Android-ASP.Net-Core-Project\\RestaurantAPI\\RestaurantAPI\\RestaurantAPI.csproj",
       "projectName": "RestaurantAPI",
-      "projectPath": "C:\\Users\\Cianan\\Source\\repos\\RestaurantAPI\\RestaurantAPI\\RestaurantAPI.csproj",
+      "projectPath": "C:\\Users\\Cianan\\Downloads\\EAD2CA2-Android-ASP.Net-Core-Project\\RestaurantAPI\\RestaurantAPI\\RestaurantAPI.csproj",
       "packagesPath": "C:\\Users\\Cianan\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Cianan\\Source\\repos\\RestaurantAPI\\RestaurantAPI\\obj\\",
+      "outputPath": "C:\\Users\\Cianan\\Downloads\\EAD2CA2-Android-ASP.Net-Core-Project\\RestaurantAPI\\RestaurantAPI\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Cianan\\AppData\\Roaming\\NuGet\\NuGet.Config",
