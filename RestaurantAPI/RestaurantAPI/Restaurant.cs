@@ -14,6 +14,8 @@ namespace RestaurantAPI
         [Range(1, 5, ErrorMessage = "Value must be between 1 and 5.")]
         public int Stars { get; set; }
 
+        public string PictureUrl { get; set; }
+
         public class Review
         {
             public string Author { get; set; }

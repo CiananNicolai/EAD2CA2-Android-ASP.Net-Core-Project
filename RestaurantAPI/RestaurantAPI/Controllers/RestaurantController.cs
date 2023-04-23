@@ -20,6 +20,8 @@ public class RestaurantController : ControllerBase
         public int Stars { get; set; }
 
         public List<Review> Reviews { get; set; }
+
+        public string PictureUrl { get; set; }
     }
 
     // Define the model for a restaurant review
@@ -32,7 +34,6 @@ public class RestaurantController : ControllerBase
         public int Rating { get; set; }
     }
 
-    // In-memory storage for restaurants
     // In-memory storage for restaurants
     private static readonly List<Restaurant> _restaurants = new List<Restaurant>
 {
@@ -59,7 +60,9 @@ public class RestaurantController : ControllerBase
                 Body = "The service was great but the food was a bit too spicy for me.",
                 Rating = 3
             }
-        }
+        },
+        PictureUrl = ""
+
     },
     new Restaurant
     {
@@ -78,7 +81,8 @@ public class RestaurantController : ControllerBase
                 Body = "This is the best pizza I've ever had!",
                 Rating = 5
             }
-        }
+        },
+        PictureUrl = ""
     }
 };
 
