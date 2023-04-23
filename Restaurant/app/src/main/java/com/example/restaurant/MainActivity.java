@@ -15,7 +15,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
 
-
 public class MainActivity extends AppCompatActivity {
 
     private ArrayList<Restaurant> restaurantList = new ArrayList<>();
@@ -49,7 +48,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
 
     public class RestaurantAdapter extends ArrayAdapter<Restaurant> {
 
