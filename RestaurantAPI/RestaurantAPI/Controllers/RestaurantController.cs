@@ -82,6 +82,17 @@ public class RestaurantController : ControllerBase
     }
 };
 
+    [HttpGet]
+    [SwaggerOperation (Summary = "Get all restaurants", 
+        Description = "Retrieve all restaurants from the database", 
+        OperationId = "GetAllRestaurants", 
+        Tags = new[] { "RestaurantController" }
+)]
+    public ActionResult<List<Restaurant>> GetAllRestaurants()
+    {
+        // Return all restaurants in the database as JSON
+        return Ok(_restaurants);
+    }
 
     // GET operation to retrieve a restaurant by ID
     [HttpGet("{id}")]
