@@ -1,39 +1,19 @@
 package com.example.restaurant;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
-
-import com.google.android.material.snackbar.Snackbar;
-
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.view.LayoutInflater;
-import android.view.View;
-
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
-
-import com.example.restaurant.databinding.ActivityMainBinding;
-
-import android.view.Menu;
-import android.view.MenuItem;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import android.os.Bundle;
-import android.app.Activity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.Spinner;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import java.util.ArrayList;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -54,7 +34,22 @@ public class MainActivity extends AppCompatActivity {
         RestaurantAdapter adapter = new RestaurantAdapter(this, restaurantList);
         ListView listView = findViewById(R.id.listView);
         listView.setAdapter(adapter);
+
+        // set an onItemClick listener on the ListView
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Restaurant restaurant = restaurantList.get(position);
+
+                Intent intent = new Intent(MainActivity.this, RestaurantDetailsActivity.class);
+                intent.putExtra("name", restaurant.getName());
+                intent.putExtra("address", restaurant.getAddress());
+                intent.putExtra("phone", restaurant.getPhoneNumber());
+                startActivity(intent);
+            }
+        });
     }
+
 
     public class RestaurantAdapter extends ArrayAdapter<Restaurant> {
 
