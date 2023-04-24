@@ -10,12 +10,16 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+
 import androidx.appcompat.app.AppCompatActivity;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import java.io.IOException;
 import java.util.ArrayList;
+
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.OkHttpClient;
@@ -46,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
                 Restaurant restaurant = restaurantList.get(position);
 
                 Intent intent = new Intent(MainActivity.this, RestaurantDetailsActivity.class);
+                intent.putExtra("id", restaurant.getId());
                 intent.putExtra("name", restaurant.getName());
                 intent.putExtra("address", restaurant.getAddress());
                 intent.putExtra("phone", restaurant.getPhone());
@@ -76,11 +81,12 @@ public class MainActivity extends AppCompatActivity {
                         for (int i = 0; i < jsonArray.length(); i++) {
                             JSONObject jsonObject = jsonArray.getJSONObject(i);
 
+                            int id = jsonObject.getInt("id");
                             String name = jsonObject.getString("name");
                             String address = jsonObject.getString("address");
                             String phone = jsonObject.getString("phone");
 
-                            Restaurant restaurant = new Restaurant(name, address, phone);
+                            Restaurant restaurant = new Restaurant(id, name, address, phone);
                             restaurantList.add(restaurant);
                         }
 
