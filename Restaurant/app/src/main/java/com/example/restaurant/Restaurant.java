@@ -1,25 +1,93 @@
 package com.example.restaurant;
 
-public class Restaurant {
-    private String name;
-    private String address;
-    private String phoneNumber;
+import java.util.ArrayList;
 
-    public Restaurant(String name, String address, String phoneNumber) {
+public class Restaurant {
+    private int id;
+    private String name;
+    private String type;
+    private String address;
+    private String phone;
+    private String description;
+    private float stars;
+    private ArrayList<Review> reviews;
+    private String pictureUrl;
+
+    public Restaurant(int id, String name, String type, String address, String phone, String description, float stars, ArrayList<Review> reviews, String pictureUrl) {
+        this.id = id;
+        this.name = name;
+        this.type = type;
+        this.address = address;
+        this.phone = phone;
+        this.description = description;
+        this.stars = stars;
+        this.reviews = reviews;
+        this.pictureUrl = pictureUrl;
+    }
+
+    public Restaurant(String name, String address, String phone) {
         this.name = name;
         this.address = address;
-        this.phoneNumber = phoneNumber;
+        this.phone = phone;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getName() {
         return name;
     }
 
+    public String getType() {
+        return type;
+    }
+
     public String getAddress() {
         return address;
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
+    public String getPhone() {
+        return phone;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public float getStars() {
+        return stars;
+    }
+
+    public ArrayList<Review> getReviews() {
+        return reviews;
+    }
+
+    public String getPictureUrl() {
+        return pictureUrl;
+    }
+
+    public static class Review {
+        private String author;
+        private String body;
+        private float rating;
+
+        public Review(String author, String body, float rating) {
+            this.author = author;
+            this.body = body;
+            this.rating = rating;
+        }
+
+        public String getAuthor() {
+            return author;
+        }
+
+        public String getBody() {
+            return body;
+        }
+
+        public float getRating() {
+            return rating;
+        }
     }
 }

@@ -10,10 +10,17 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-
 import androidx.appcompat.app.AppCompatActivity;
-
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+import java.io.IOException;
 import java.util.ArrayList;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -24,10 +31,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // add some restaurants to the list
-        restaurantList.add(new Restaurant("Restaurant A", "123 Main St", "555-1234"));
-        restaurantList.add(new Restaurant("Restaurant B", "456 Elm St", "555-5678"));
-        restaurantList.add(new Restaurant("Restaurant C", "789 Oak St", "555-9012"));
+        // get restaurants from the API
+        getRestaurantsFromAPI();
 
         // create the adapter and set it on the ListView
         RestaurantAdapter adapter = new RestaurantAdapter(this, restaurantList);
@@ -43,8 +48,54 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this, RestaurantDetailsActivity.class);
                 intent.putExtra("name", restaurant.getName());
                 intent.putExtra("address", restaurant.getAddress());
-                intent.putExtra("phone", restaurant.getPhoneNumber());
+                intent.putExtra("phone", restaurant.getPhone());
                 startActivity(intent);
+            }
+        });
+    }
+
+    private void getRestaurantsFromAPI() {
+        OkHttpClient client = new OkHttpClient();
+
+        Request request = new Request.Builder()
+                .url("https://restarauntapica2.azurewebsites.net/api/Restaurant")
+                .build();
+
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                e.printStackTrace();
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                if (response.isSuccessful()) {
+                    try {
+                        JSONArray jsonArray = new JSONArray(response.body().string());
+
+                        for (int i = 0; i < jsonArray.length(); i++) {
+                            JSONObject jsonObject = jsonArray.getJSONObject(i);
+
+                            String name = jsonObject.getString("name");
+                            String address = jsonObject.getString("address");
+                            String phone = jsonObject.getString("phone");
+
+                            Restaurant restaurant = new Restaurant(name, address, phone);
+                            restaurantList.add(restaurant);
+                        }
+
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                // notify the adapter that the data has changed
+                                ((ArrayAdapter) ((ListView) findViewById(R.id.listView)).getAdapter()).notifyDataSetChanged();
+                            }
+                        });
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
             }
         });
     }
@@ -69,10 +120,9 @@ public class MainActivity extends AppCompatActivity {
 
             nameTextView.setText(restaurant.getName());
             addressTextView.setText(restaurant.getAddress());
-            phoneTextView.setText(restaurant.getPhoneNumber());
+            phoneTextView.setText(restaurant.getPhone());
 
             return convertView;
         }
     }
-
 }
