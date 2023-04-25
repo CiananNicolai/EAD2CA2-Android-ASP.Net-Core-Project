@@ -77,6 +77,7 @@ public class RestaurantDetailsActivity extends AppCompatActivity {
                             String phone = response.getString("phone");
                             String description = response.getString("description");
                             int stars = (int) response.getInt("stars");
+                            String pictureUrl = response.getString("pictureUrl");
 
                             // display the restaurant data on the activity
                             nameTextView.setText(name);
@@ -85,6 +86,7 @@ public class RestaurantDetailsActivity extends AppCompatActivity {
                             phoneTextView.setText(phone);
                             descriptionTextView.setText(description);
                             ratingBar.setRating(stars);
+                            Picasso.get().load(pictureUrl).into(restaurantImageView);
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -128,6 +130,7 @@ public class RestaurantDetailsActivity extends AppCompatActivity {
                             phoneTextView.setText(phone);
                             descriptionTextView.setText(description);
                             ratingBar.setRating(stars);
+                            Picasso.get().load(pictureUrl).into(restaurantImageView);
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }

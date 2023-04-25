@@ -1,0 +1,12 @@
+C:\Users\X00161872\EAD2\EAD2CA2-Android-ASP.Net-Core-Project\RestaurantAPI\RestaurantAPI\obj\Release\net6.0\PubTmp\Out\RestaurantAPI.exe
+C:\Users\X00161872\EAD2\EAD2CA2-Android-ASP.Net-Core-Project\RestaurantAPI\RestaurantAPI\obj\Release\net6.0\PubTmp\Out\appsettings.Development.json
+C:\Users\X00161872\EAD2\EAD2CA2-Android-ASP.Net-Core-Project\RestaurantAPI\RestaurantAPI\obj\Release\net6.0\PubTmp\Out\appsettings.json
+C:\Users\X00161872\EAD2\EAD2CA2-Android-ASP.Net-Core-Project\RestaurantAPI\RestaurantAPI\obj\Release\net6.0\PubTmp\Out\RestaurantAPI.dll
+C:\Users\X00161872\EAD2\EAD2CA2-Android-ASP.Net-Core-Project\RestaurantAPI\RestaurantAPI\obj\Release\net6.0\PubTmp\Out\RestaurantAPI.deps.json
+C:\Users\X00161872\EAD2\EAD2CA2-Android-ASP.Net-Core-Project\RestaurantAPI\RestaurantAPI\obj\Release\net6.0\PubTmp\Out\RestaurantAPI.runtimeconfig.json
+C:\Users\X00161872\EAD2\EAD2CA2-Android-ASP.Net-Core-Project\RestaurantAPI\RestaurantAPI\obj\Release\net6.0\PubTmp\Out\RestaurantAPI.pdb
+C:\Users\X00161872\EAD2\EAD2CA2-Android-ASP.Net-Core-Project\RestaurantAPI\RestaurantAPI\obj\Release\net6.0\PubTmp\Out\Microsoft.OpenApi.dll
+C:\Users\X00161872\EAD2\EAD2CA2-Android-ASP.Net-Core-Project\RestaurantAPI\RestaurantAPI\obj\Release\net6.0\PubTmp\Out\Swashbuckle.AspNetCore.Annotations.dll
+C:\Users\X00161872\EAD2\EAD2CA2-Android-ASP.Net-Core-Project\RestaurantAPI\RestaurantAPI\obj\Release\net6.0\PubTmp\Out\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\X00161872\EAD2\EAD2CA2-Android-ASP.Net-Core-Project\RestaurantAPI\RestaurantAPI\obj\Release\net6.0\PubTmp\Out\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\X00161872\EAD2\EAD2CA2-Android-ASP.Net-Core-Project\RestaurantAPI\RestaurantAPI\obj\Release\net6.0\PubTmp\Out\Swashbuckle.AspNetCore.SwaggerUI.dll
