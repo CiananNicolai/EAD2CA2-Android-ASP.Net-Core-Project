@@ -81,9 +81,9 @@ public class MainActivity extends AppCompatActivity {
                             int id = jsonObject.getInt("id");
                             String name = jsonObject.getString("name");
                             String address = jsonObject.getString("address");
-                            String phone = jsonObject.getString("phone");
+                            String type = jsonObject.getString("type");
 
-                            Restaurant restaurant = new Restaurant(id, name, address, phone);
+                            Restaurant restaurant = new Restaurant(id, name, address, type);
                             restaurantList.add(restaurant);
                         }
 
@@ -119,11 +119,11 @@ public class MainActivity extends AppCompatActivity {
 
             TextView nameTextView = convertView.findViewById(R.id.nameTextView);
             TextView addressTextView = convertView.findViewById(R.id.addressTextView);
-            TextView phoneTextView = convertView.findViewById(R.id.phoneTextView);
+            TextView typeTextView = convertView.findViewById(R.id.typeTextView);
 
             nameTextView.setText(restaurant.getName());
             addressTextView.setText(restaurant.getAddress());
-            phoneTextView.setText(restaurant.getPhone());
+            typeTextView.setText(restaurant.getType());
 
             return convertView;
         }

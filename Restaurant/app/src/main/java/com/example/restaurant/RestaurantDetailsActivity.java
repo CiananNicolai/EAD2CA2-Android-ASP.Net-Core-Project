@@ -1,4 +1,5 @@
 package com.example.restaurant;
+
 import android.widget.Button;
 import android.content.Intent;
 import android.os.Bundle;
@@ -27,7 +28,6 @@ public class RestaurantDetailsActivity extends AppCompatActivity {
     private TextView addressTextView;
     private TextView phoneTextView;
     private TextView descriptionTextView;
-
     private RatingBar ratingBar;
     private TextView pictureUrlTextView;
     private TextView reviewsTextView;
@@ -77,6 +77,7 @@ public class RestaurantDetailsActivity extends AppCompatActivity {
                             String phone = response.getString("phone");
                             String description = response.getString("description");
                             int stars = (int) response.getInt("stars");
+                            String pictureUrl = response.getString("pictureUrl");
 
                             // display the restaurant data on the activity
                             nameTextView.setText(name);
@@ -85,6 +86,7 @@ public class RestaurantDetailsActivity extends AppCompatActivity {
                             phoneTextView.setText(phone);
                             descriptionTextView.setText(description);
                             ratingBar.setRating(stars);
+                            Picasso.get().load(pictureUrl).into(restaurantImageView);
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -143,8 +145,6 @@ public class RestaurantDetailsActivity extends AppCompatActivity {
         // add the JSON object request for the restaurant data to the request queue
         requestQueue.add(restaurantJsonObjectRequest);
 
-
-
         // create the JSON array request for reviews
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, reviewsUrl, null,
                 new Response.Listener<JSONArray>() {
@@ -164,7 +164,6 @@ public class RestaurantDetailsActivity extends AppCompatActivity {
                                 return "";
                         }
                     }
-
                     @Override
                     public void onResponse(JSONArray response) {
                         try {
@@ -182,8 +181,6 @@ public class RestaurantDetailsActivity extends AppCompatActivity {
                         }
                     }
                 },
-
-
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
@@ -204,7 +201,6 @@ public class RestaurantDetailsActivity extends AppCompatActivity {
             }
         });
     }
-
     // Handle back button press in action bar
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

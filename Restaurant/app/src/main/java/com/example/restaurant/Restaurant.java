@@ -25,19 +25,12 @@ public class Restaurant {
         this.pictureUrl = pictureUrl;
     }
 
-    public Restaurant(String name, String address, String phone) {
-        this.name = name;
-        this.address = address;
-        this.phone = phone;
-    }
-
-    public Restaurant(int id, String name, String address, String phone) {
+    public Restaurant(int id, String name, String address, String type) {
         this.id = id;
         this.name = name;
         this.address = address;
-        this.phone = phone;
+        this.type = type;
     }
-
 
     public int getId() {
         return id;
