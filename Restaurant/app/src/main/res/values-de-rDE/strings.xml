@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="action_settings">Einstellungen</string>
+    <string name="first_fragment_label">Erstes Fragment</string>
+    <string name="second_fragment_label">Zweites Fragment</string>
+    <string name="next">Nächste</string>
+    <string name="previous">Vorherige</string>
+    <string name="hello_first_fragment">Hallo erstes Fragment</string>
+    <string name="hello_second_fragment">Hallo zweites Fragment. Argument: %1$s</string>
+    <string name="hello_blank_fragment">Hallo leeres Fragment</string>
+    <string name="app_name">Restaurant</string>
+    <string name="reviews_header">" Bewertungen:"</string>
+</resources>
