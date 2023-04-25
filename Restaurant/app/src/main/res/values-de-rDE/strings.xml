@@ -17,5 +17,6 @@
     <string name="enter_your_name">"Gib deinen Namen ein  "</string>
     <string name="write_a_review">eine Rezension schreiben</string>
     <string name="restaurant_list">Restaurantliste</string>
+    <string name="sort_prompt">Sortiere nach:</string>
 
 </resources>

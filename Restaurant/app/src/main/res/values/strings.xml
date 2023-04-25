@@ -25,5 +25,6 @@
         <item>Chipper</item>
         <item>Turkish</item>
     </string-array>
+    <string name="hello_blank_fragment">blank fragment</string>
 
 </resources>
