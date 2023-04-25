@@ -1,6 +1,7 @@
 package com.example.restaurant;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RatingBar;
@@ -37,6 +38,8 @@ public class WriteReviewActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_write_review);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         int restaurantId = getIntent().getIntExtra("id", -1);
         if (restaurantId == -1) {
@@ -110,5 +113,16 @@ public class WriteReviewActivity extends AppCompatActivity {
 
             mRequestQueue.add(request);
         });
+
+
+    }
+    // Handle back button press in action bar
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            onBackPressed();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

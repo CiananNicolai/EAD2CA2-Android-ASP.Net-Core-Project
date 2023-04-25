@@ -7,7 +7,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
-
+import android.widget.RatingBar;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -27,7 +27,8 @@ public class RestaurantDetailsActivity extends AppCompatActivity {
     private TextView addressTextView;
     private TextView phoneTextView;
     private TextView descriptionTextView;
-    private TextView starsTextView;
+
+    private RatingBar ratingBar;
     private TextView pictureUrlTextView;
     private TextView reviewsTextView;
     private ImageView restaurantImageView;
@@ -48,7 +49,7 @@ public class RestaurantDetailsActivity extends AppCompatActivity {
         addressTextView = findViewById(R.id.addressTextView);
         phoneTextView = findViewById(R.id.phoneTextView);
         descriptionTextView = findViewById(R.id.descriptionTextView);
-        starsTextView = findViewById(R.id.starsTextView);
+        ratingBar = findViewById(R.id.ratingBar);
         pictureUrlTextView = findViewById(R.id.pictureUrlTextView);
         reviewsTextView = findViewById(R.id.reviewsTextView);
         restaurantImageView = findViewById(R.id.restaurantImageView);
@@ -75,7 +76,7 @@ public class RestaurantDetailsActivity extends AppCompatActivity {
                             String address = response.getString("address");
                             String phone = response.getString("phone");
                             String description = response.getString("description");
-                            float stars = (float) response.getDouble("stars");
+                            int stars = (int) response.getInt("stars");
 
                             // display the restaurant data on the activity
                             nameTextView.setText(name);
@@ -83,7 +84,7 @@ public class RestaurantDetailsActivity extends AppCompatActivity {
                             addressTextView.setText(address);
                             phoneTextView.setText(phone);
                             descriptionTextView.setText(description);
-                            starsTextView.setText(String.valueOf(stars));
+                            ratingBar.setRating(stars);
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -117,7 +118,7 @@ public class RestaurantDetailsActivity extends AppCompatActivity {
                             String address = response.getString("address");
                             String phone = response.getString("phone");
                             String description = response.getString("description");
-                            float stars = (float) response.getDouble("stars");
+                            int stars = (int) response.getInt("stars");
                             String pictureUrl = response.getString("pictureUrl");
 
                             // display the restaurant data on the activity
@@ -126,7 +127,7 @@ public class RestaurantDetailsActivity extends AppCompatActivity {
                             addressTextView.setText(address);
                             phoneTextView.setText(phone);
                             descriptionTextView.setText(description);
-                            starsTextView.setText(String.valueOf(stars));
+                            ratingBar.setRating(stars);
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -147,6 +148,23 @@ public class RestaurantDetailsActivity extends AppCompatActivity {
         // create the JSON array request for reviews
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, reviewsUrl, null,
                 new Response.Listener<JSONArray>() {
+                    private String getStarRatingString(float rating) {
+                        switch (Math.round(rating)) {
+                            case 1:
+                                return "★☆☆☆☆";
+                            case 2:
+                                return "★★☆☆☆";
+                            case 3:
+                                return "★★★☆☆";
+                            case 4:
+                                return "★★★★☆";
+                            case 5:
+                                return "★★★★★";
+                            default:
+                                return "";
+                        }
+                    }
+
                     @Override
                     public void onResponse(JSONArray response) {
                         try {
@@ -156,13 +174,16 @@ public class RestaurantDetailsActivity extends AppCompatActivity {
                                 String author = review.getString("author");
                                 String body = review.getString("body");
                                 float rating = (float) review.getDouble("rating");
-                                reviewsTextView.append(author + " - " + body + " (" + rating + ")\n\n");
+                                String starRating  = getStarRatingString(rating);
+                                reviewsTextView.append(author + " - " + body + " (" + starRating + ")\n\n");
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
                     }
                 },
+
+
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
@@ -183,9 +204,6 @@ public class RestaurantDetailsActivity extends AppCompatActivity {
             }
         });
     }
-
-
-
 
     // Handle back button press in action bar
     @Override
