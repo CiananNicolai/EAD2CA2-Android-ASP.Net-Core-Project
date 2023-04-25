@@ -11,5 +11,11 @@
     <string name="write_review_title">Eine Rezension schreiben</string>
     <string name="hello_blank_fragment">Hallo leeres Fragment</string>
     <string name="app_name">Restaurant</string>
-    <string name="reviews_header">" Bewertungen:"</string>
+    <string name="reviews_header">Bewertungen:</string>
+    <string name="submit_review">Bewertung abschicken</string>
+    <string name="enter_review_description">Bewertungsbeschreibung eingeben</string>
+    <string name="enter_your_name">"Gib deinen Namen ein  "</string>
+    <string name="write_a_review">eine Rezension schreiben</string>
+    <string name="restaurant_list">Restaurantliste</string>
+
 </resources>
