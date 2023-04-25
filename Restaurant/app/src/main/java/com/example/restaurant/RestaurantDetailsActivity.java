@@ -1,13 +1,12 @@
 package com.example.restaurant;
-
+import android.widget.Button;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.util.Log;
-import android.widget.LinearLayout;
 import androidx.appcompat.app.AppCompatActivity;
+import android.view.View;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -143,6 +142,8 @@ public class RestaurantDetailsActivity extends AppCompatActivity {
         // add the JSON object request for the restaurant data to the request queue
         requestQueue.add(restaurantJsonObjectRequest);
 
+
+
         // create the JSON array request for reviews
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, reviewsUrl, null,
                 new Response.Listener<JSONArray>() {
@@ -171,7 +172,20 @@ public class RestaurantDetailsActivity extends AppCompatActivity {
 
         // add the JSON array request for reviews to the request queue
         requestQueue.add(jsonArrayRequest);
+
+        Button writeReviewButton = findViewById(R.id.write_review_button);
+        writeReviewButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(RestaurantDetailsActivity.this, WriteReviewActivity.class);
+                intent.putExtra("id", restaurantId);
+                startActivity(intent);
+            }
+        });
     }
+
+
+
 
     // Handle back button press in action bar
     @Override
