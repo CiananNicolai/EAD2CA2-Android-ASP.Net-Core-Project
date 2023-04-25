@@ -9,11 +9,11 @@ public class Restaurant {
     private String address;
     private String phone;
     private String description;
-    private float stars;
+    private int stars;
     private ArrayList<Review> reviews;
     private String pictureUrl;
 
-    public Restaurant(int id, String name, String type, String address, String phone, String description, float stars, ArrayList<Review> reviews, String pictureUrl) {
+    public Restaurant(int id, String name, String type, String address, String phone, String description, int stars, ArrayList<Review> reviews, String pictureUrl) {
         this.id = id;
         this.name = name;
         this.type = type;
@@ -56,7 +56,7 @@ public class Restaurant {
         return description;
     }
 
-    public float getStars() {
+    public int getStars() {
         return stars;
     }
 

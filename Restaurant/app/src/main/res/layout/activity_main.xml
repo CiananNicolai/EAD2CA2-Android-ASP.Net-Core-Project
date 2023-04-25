@@ -5,15 +5,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
-    <Spinner
-        android:id="@+id/sortSpinner"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
-        android:entries="@array/sort_options"
-        android:prompt="@string/sort_prompt" />
-
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -27,6 +18,15 @@
             android:text="@string/restaurant_list"
             android:textSize="24sp"
             android:textStyle="bold" />
+
+        <Spinner
+            android:id="@+id/sortSpinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:prompt="@string/sort_prompt"
+            android:textColor="@android:color/white" />
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
@@ -43,16 +43,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:divider="@android:color/system_neutral2_300"
-        android:dividerHeight="2dp"
-        android:padding="25dp" />
-
-    <RatingBar
-        android:id="@+id/ratingBar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:numStars="5"
-        android:rating="0"
-        android:stepSize="0.5" />
+        android:stretchColumns="*" />
 
     <ProgressBar
         android:id="@+id/progressBar"
@@ -60,6 +51,5 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:visibility="gone" />
-
 
 </LinearLayout>
