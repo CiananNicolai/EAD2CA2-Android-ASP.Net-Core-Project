@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\X00161872\\EAD2\\EAD2CA2-Android-ASP.Net-Core-Project\\RestaurantAPI\\RestaurantAPI\\RestaurantAPI.csproj": {}
+    "C:\\Users\\Cianan\\Downloads\\EAD2CA2-Android-ASP.Net-Core-Project\\RestaurantAPI\\RestaurantAPI\\RestaurantAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\X00161872\\EAD2\\EAD2CA2-Android-ASP.Net-Core-Project\\RestaurantAPI\\RestaurantAPI\\RestaurantAPI.csproj": {
+    "C:\\Users\\Cianan\\Downloads\\EAD2CA2-Android-ASP.Net-Core-Project\\RestaurantAPI\\RestaurantAPI\\RestaurantAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\X00161872\\EAD2\\EAD2CA2-Android-ASP.Net-Core-Project\\RestaurantAPI\\RestaurantAPI\\RestaurantAPI.csproj",
+        "projectUniqueName": "C:\\Users\\Cianan\\Downloads\\EAD2CA2-Android-ASP.Net-Core-Project\\RestaurantAPI\\RestaurantAPI\\RestaurantAPI.csproj",
         "projectName": "RestaurantAPI",
-        "projectPath": "C:\\Users\\X00161872\\EAD2\\EAD2CA2-Android-ASP.Net-Core-Project\\RestaurantAPI\\RestaurantAPI\\RestaurantAPI.csproj",
-        "packagesPath": "C:\\Users\\elije\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\X00161872\\EAD2\\EAD2CA2-Android-ASP.Net-Core-Project\\RestaurantAPI\\RestaurantAPI\\obj\\",
+        "projectPath": "C:\\Users\\Cianan\\Downloads\\EAD2CA2-Android-ASP.Net-Core-Project\\RestaurantAPI\\RestaurantAPI\\RestaurantAPI.csproj",
+        "packagesPath": "C:\\Users\\Cianan\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Cianan\\Downloads\\EAD2CA2-Android-ASP.Net-Core-Project\\RestaurantAPI\\RestaurantAPI\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\elije\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\Cianan\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -26,7 +22,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
