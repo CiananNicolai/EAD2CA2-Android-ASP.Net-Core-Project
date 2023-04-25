@@ -7,6 +7,8 @@
     <string name="previous">Vorherige</string>
     <string name="hello_first_fragment">Hallo erstes Fragment</string>
     <string name="hello_second_fragment">Hallo zweites Fragment. Argument: %1$s</string>
+    <string name="rating_bar_content_description">"German  Wählen Sie eine Bewertung zwischen 1 und 5 Sternen  "</string>
+    <string name="write_review_title">Eine Rezension schreiben</string>
     <string name="hello_blank_fragment">Hallo leeres Fragment</string>
     <string name="app_name">Restaurant</string>
     <string name="reviews_header">" Bewertungen:"</string>
