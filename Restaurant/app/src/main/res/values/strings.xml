@@ -13,7 +13,7 @@
     <string name="submit_review">Submit Review</string>
     <string name="enter_your_name">Enter your name</string>
     <string name="write_a_review">Write a review</string>
-    <string name="restaurant_list">Restaurant Reviews</string>
+    <string name="restaurant_list">Restaurant Lists</string>
     <string name="enter_review_description">Enter Review Description</string>
     <string name="sort_prompt">Sort by:</string>
     <string-array name="restaurant_types">
