@@ -15,6 +15,15 @@
     <string name="write_a_review">Write a review</string>
     <string name="restaurant_list">Restaurant List</string>
     <string name="enter_review_description">Enter Review Description</string>
-
+    <string name="sort_prompt">Sort by:</string>
+    <string-array name="restaurant_types">
+        <item>All</item>
+        <item>Thai</item>
+        <item>Chinese</item>
+        <item>Italian</item>
+        <item>Mexican</item>
+        <item>Chipper</item>
+        <item>Turkish</item>
+    </string-array>
 
 </resources>

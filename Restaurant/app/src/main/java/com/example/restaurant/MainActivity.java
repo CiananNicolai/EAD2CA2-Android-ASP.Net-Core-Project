@@ -10,6 +10,9 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import androidx.appcompat.app.AlertDialog;
+import android.content.DialogInterface;
+import android.widget.Spinner;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -19,6 +22,8 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -29,18 +34,20 @@ import okhttp3.Response;
 public class MainActivity extends AppCompatActivity {
 
     private ArrayList<Restaurant> restaurantList = new ArrayList<>();
+    private RestaurantAdapter adapter;
+    private Spinner sortSpinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // get restaurants from the API
-        getRestaurantsFromAPI();
+        // get references to the views
+        ListView listView = findViewById(R.id.listView);
+        sortSpinner = findViewById(R.id.sortSpinner);
 
         // create the adapter and set it on the ListView
-        RestaurantAdapter adapter = new RestaurantAdapter(this, restaurantList);
-        ListView listView = findViewById(R.id.listView);
+        adapter = new RestaurantAdapter(this, restaurantList);
         listView.setAdapter(adapter);
 
         // set an onItemClick listener on the ListView
@@ -54,6 +61,36 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        // set an onItemSelectedListener on the Spinner
+        sortSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String selectedType = sortSpinner.getSelectedItem().toString();
+                sortRestaurantsByType(selectedType.equals("All") ? null : selectedType);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        // populate the spinner with the restaurant types
+        Spinner sortSpinner = findViewById(R.id.sortSpinner);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.restaurant_types, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        sortSpinner.setAdapter(adapter);
+
+        // set the default selected type to "All"
+        sortSpinner.setSelection(adapter.getPosition("All"));
+
+        // get restaurants from the API
+        getRestaurantsFromAPI();
+
+        // show unfiltered list
+        sortRestaurantsByType(null);
     }
 
     private void getRestaurantsFromAPI() {
@@ -91,7 +128,10 @@ public class MainActivity extends AppCompatActivity {
                             @Override
                             public void run() {
                                 // notify the adapter that the data has changed
-                                ((ArrayAdapter) ((ListView) findViewById(R.id.listView)).getAdapter()).notifyDataSetChanged();
+                                adapter.notifyDataSetChanged();
+
+                                // populate the list with the new data
+                                sortRestaurantsByType(null);
                             }
                         });
 
@@ -102,6 +142,28 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+    private void sortRestaurantsByType(String selectedType) {
+        // check if restaurantList is empty, and return if it is
+        if (restaurantList.isEmpty()) {
+            return;
+        }
+
+        ArrayList<Restaurant> filteredList = new ArrayList<>();
+        if (selectedType == null) {
+            filteredList.addAll(restaurantList);
+        } else {
+            for (Restaurant restaurant : restaurantList) {
+                if (restaurant.getType().equals(selectedType)) {
+                    filteredList.add(restaurant);
+                }
+            }
+        }
+        adapter = new RestaurantAdapter(this, filteredList);
+        ListView listView = findViewById(R.id.listView);
+        listView.setAdapter(adapter);
+    }
+
 
     public class RestaurantAdapter extends ArrayAdapter<Restaurant> {
 
@@ -128,5 +190,4 @@ public class MainActivity extends AppCompatActivity {
             return convertView;
         }
     }
-
 }
