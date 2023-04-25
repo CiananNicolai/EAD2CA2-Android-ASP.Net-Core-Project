@@ -63,6 +63,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/reviewsTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/reviews_header"
+                android:textSize="18sp" />
+
         </LinearLayout>
     </ScrollView>
 

@@ -6,6 +6,7 @@ import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.util.Log;
+import android.widget.LinearLayout;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.Request;
@@ -15,7 +16,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.squareup.picasso.Picasso;
-
+import com.android.volley.toolbox.JsonArrayRequest;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -28,6 +30,7 @@ public class RestaurantDetailsActivity extends AppCompatActivity {
     private TextView descriptionTextView;
     private TextView starsTextView;
     private TextView pictureUrlTextView;
+    private TextView reviewsTextView;
     private ImageView restaurantImageView;
 
     private RequestQueue requestQueue;
@@ -48,6 +51,7 @@ public class RestaurantDetailsActivity extends AppCompatActivity {
         descriptionTextView = findViewById(R.id.descriptionTextView);
         starsTextView = findViewById(R.id.starsTextView);
         pictureUrlTextView = findViewById(R.id.pictureUrlTextView);
+        reviewsTextView = findViewById(R.id.reviewsTextView);
         restaurantImageView = findViewById(R.id.restaurantImageView);
 
         // get the restaurant id from the intent
@@ -56,12 +60,11 @@ public class RestaurantDetailsActivity extends AppCompatActivity {
 
         // create the URL for the API call
         String url = "https://restarauntapica2.azurewebsites.net/api/Restaurant/" + restaurantId;
-        Log.d("RestaurantDetailsActivity", "restaurantId lol: " + restaurantId);
 
         // create the request queue
         requestQueue = Volley.newRequestQueue(this);
 
-        // create the JSON object request
+        // create the JSON object request for restaurant details
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
                     @Override
@@ -96,6 +99,78 @@ public class RestaurantDetailsActivity extends AppCompatActivity {
 
         // add the JSON object request to the request queue
         requestQueue.add(jsonObjectRequest);
+
+        // create the JSON array request for restaurant reviews
+        String reviewsUrl = "https://restarauntapica2.azurewebsites.net/api/Restaurant/" + restaurantId + "/reviews";
+
+        // create the request queue
+        requestQueue = Volley.newRequestQueue(this);
+
+        // create the JSON object request for the restaurant data
+        JsonObjectRequest restaurantJsonObjectRequest = new JsonObjectRequest(Request.Method.GET, reviewsUrl, null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            // get the restaurant data from the JSON object
+                            String name = response.getString("name");
+                            String type = response.getString("type");
+                            String address = response.getString("address");
+                            String phone = response.getString("phone");
+                            String description = response.getString("description");
+                            float stars = (float) response.getDouble("stars");
+                            String pictureUrl = response.getString("pictureUrl");
+
+                            // display the restaurant data on the activity
+                            nameTextView.setText(name);
+                            typeTextView.setText(type);
+                            addressTextView.setText(address);
+                            phoneTextView.setText(phone);
+                            descriptionTextView.setText(description);
+                            starsTextView.setText(String.valueOf(stars));
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        error.printStackTrace();
+                    }
+                });
+
+        // add the JSON object request for the restaurant data to the request queue
+        requestQueue.add(restaurantJsonObjectRequest);
+
+        // create the JSON array request for reviews
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, reviewsUrl, null,
+                new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        try {
+                            // iterate through the reviews and append them to the reviewsTextView
+                            for (int i = 0; i < response.length(); i++) {
+                                JSONObject review = response.getJSONObject(i);
+                                String author = review.getString("author");
+                                String body = review.getString("body");
+                                float rating = (float) review.getDouble("rating");
+                                reviewsTextView.append(author + " - " + body + " (" + rating + ")\n\n");
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        error.printStackTrace();
+                    }
+                });
+
+        // add the JSON array request for reviews to the request queue
+        requestQueue.add(jsonArrayRequest);
     }
 
     // Handle back button press in action bar
@@ -108,3 +183,4 @@ public class RestaurantDetailsActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 }
+
