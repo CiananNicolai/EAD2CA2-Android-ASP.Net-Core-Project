@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
-
+import android.util.Log;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.Request;
@@ -55,7 +55,8 @@ public class RestaurantDetailsActivity extends AppCompatActivity {
         int restaurantId = intent.getIntExtra("id", -1);
 
         // create the URL for the API call
-        String url = "https://restaurant-api-example.com/api/restaurants/" + restaurantId;
+        String url = "https://restarauntapica2.azurewebsites.net/api/Restaurant/" + restaurantId;
+        Log.d("RestaurantDetailsActivity", "restaurantId lol: " + restaurantId);
 
         // create the request queue
         requestQueue = Volley.newRequestQueue(this);
@@ -73,7 +74,6 @@ public class RestaurantDetailsActivity extends AppCompatActivity {
                             String phone = response.getString("phone");
                             String description = response.getString("description");
                             float stars = (float) response.getDouble("stars");
-                            String pictureUrl = response.getString("picture_url");
 
                             // display the restaurant data on the activity
                             nameTextView.setText(name);
@@ -82,8 +82,6 @@ public class RestaurantDetailsActivity extends AppCompatActivity {
                             phoneTextView.setText(phone);
                             descriptionTextView.setText(description);
                             starsTextView.setText(String.valueOf(stars));
-                            pictureUrlTextView.setText(pictureUrl);
-                            Picasso.get().load(pictureUrl).into(restaurantImageView);
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }

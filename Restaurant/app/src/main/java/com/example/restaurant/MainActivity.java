@@ -51,9 +51,6 @@ public class MainActivity extends AppCompatActivity {
 
                 Intent intent = new Intent(MainActivity.this, RestaurantDetailsActivity.class);
                 intent.putExtra("id", restaurant.getId());
-                intent.putExtra("name", restaurant.getName());
-                intent.putExtra("address", restaurant.getAddress());
-                intent.putExtra("phone", restaurant.getPhone());
                 startActivity(intent);
             }
         });
@@ -120,10 +117,12 @@ public class MainActivity extends AppCompatActivity {
                 convertView = LayoutInflater.from(getContext()).inflate(R.layout.restaurant_item, parent, false);
             }
 
+            TextView idTextView = convertView.findViewById(R.id.idTextView);
             TextView nameTextView = convertView.findViewById(R.id.nameTextView);
             TextView addressTextView = convertView.findViewById(R.id.addressTextView);
             TextView phoneTextView = convertView.findViewById(R.id.phoneTextView);
 
+            idTextView.setText(String.valueOf(restaurant.getId()));
             nameTextView.setText(restaurant.getName());
             addressTextView.setText(restaurant.getAddress());
             phoneTextView.setText(restaurant.getPhone());
@@ -131,4 +130,5 @@ public class MainActivity extends AppCompatActivity {
             return convertView;
         }
     }
+
 }
